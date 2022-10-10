@@ -21,5 +21,4 @@ export class BlogpostComponent implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.blogpost$ = this.blogpostService.getBlogpostById(id);
   }
-
 }
