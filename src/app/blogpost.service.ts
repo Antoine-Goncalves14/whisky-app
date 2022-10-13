@@ -20,4 +20,8 @@ export class BlogpostService {
   getBlogpostById(id): Observable<Blogpost> {
     return this.httpClient.get<Blogpost>(`${this.baseUrl}/${id}`);
   }
+
+  deleteSingleBlogpost(id: string) {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+  }
 }
