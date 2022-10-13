@@ -29,14 +29,14 @@ export class AdminComponent implements OnInit {
         (data) => {
           this.refresh(data);
         },
-        (err) => console.log(err)
+        (err) => this.handleError(err)
       );
     } else {
       return this.blogpostService.deleteBlogposts(ids).subscribe(
         (data) => {
           this.refresh(data);
         },
-        (err) => console.log(err)
+        (err) => this.handleError(err)
       );
     }
   }
@@ -46,4 +46,6 @@ export class AdminComponent implements OnInit {
       this.allBlogposts = data;
     });
   }
+
+  handleError(error) {}
 }
