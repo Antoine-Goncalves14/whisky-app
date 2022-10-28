@@ -35,7 +35,7 @@ export class BlogpostEditComponent implements OnInit {
   createForm() {
     this.editForm = this.fb.group({
       title: "",
-      subTilte: "",
+      subTitle: "",
       content: "",
       image: "",
     });
