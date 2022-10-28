@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-blogpost-create',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blogpost-create.component.css']
 })
 export class BlogpostCreateComponent implements OnInit {
+  creationForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  createForm() {
+    this.creationForm = this.fb.group({
+      title: '',
+      subTitle: '',
+      content: ''
+    });
+  }
+
+  createBlogPost() {
+    if (this.creationForm.valid) {
+
+    }
   }
 
 }
