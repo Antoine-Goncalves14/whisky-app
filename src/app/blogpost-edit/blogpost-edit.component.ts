@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormGroupDirective } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { BlogpostService } from "../blogpost.service";
 import { Blogpost } from "../models/blogpost";
@@ -54,5 +54,26 @@ export class BlogpostEditComponent implements OnInit {
         (error) => console.error(error)
       );
     }
+  }
+
+  updateBlogpost(formDirective: FormGroupDirective) {
+    if (this.editForm.valid) {
+      console.log(this.editForm.value);
+      this.blogpostService.updateBlogpost(this.blogpostId, this.editForm.value).subscribe(data => this.handleSuccess(data, formDirective), error => this.handleError(error));
+
+    }
+  }
+
+  handleSuccess(data, formDirective) {
+    console.log('OK handleSuccess - blog post updated', data);
+    this.editForm.reset();
+    formDirective.resetForm();
+    this.blogpostService.dispatchBlogpostCreated(data._id);
+
+  }
+
+  handleError(error) {
+    console.error('KO handleError - blog post NOT updated', error);
+
   }
 }
