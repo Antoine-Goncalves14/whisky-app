@@ -10,7 +10,10 @@
       <mat-form-field>
         <textarea matInput placeholder="content" formControlName="content" required></textarea>
       </mat-form-field>
-      <button mat-button type="submit">create</button>
+      <label for="image">choose image</label>
+      <input type="file" name="image" id="image" formControlName="image">
+      <button type="button" mat-button (click)="upload()">upload image</button>
+      <button mat-button type="submit">create blog post</button>
     </div>
   </form>
 </mat-card>

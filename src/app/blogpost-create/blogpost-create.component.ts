@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, FormGroupDirective } from "@angular/forms";
 import { BlogpostService } from "../blogpost.service";
 
@@ -12,7 +12,8 @@ export class BlogpostCreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private blogpostService: BlogpostService
+    private blogpostService: BlogpostService,
+    private el: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -24,7 +25,14 @@ export class BlogpostCreateComponent implements OnInit {
       title: "",
       subTitle: "",
       content: "",
+      image: ""
     });
+  }
+
+  upload() {
+    // retrieve file upload HTML tag
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#image');
+    let fileCount: number = inputEl.files.length;
   }
 
   createBlogPost(formDirective: FormGroupDirective) {
