@@ -33,6 +33,12 @@ export class BlogpostCreateComponent implements OnInit {
     // retrieve file upload HTML tag
     let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#image');
     let fileCount: number = inputEl.files.length;
+
+    if (fileCount > 0) {
+      let formData = new FormData();
+      formData.append('image', inputEl.files.item(0));
+      this.blogpostService.uploadImage(formData).subscribe(data => console.log(data), error => console.error(error));
+    }
   }
 
   createBlogPost(formDirective: FormGroupDirective) {
