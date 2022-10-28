@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormGroupDirective } from "@angular/forms";
 import { BlogpostService } from "../blogpost.service";
 
 @Component({
@@ -27,18 +27,22 @@ export class BlogpostCreateComponent implements OnInit {
     });
   }
 
-  createBlogPost() {
+  createBlogPost(formDirective: FormGroupDirective) {
     if (this.creationForm.valid) {
-      this.blogpostService.createBlogpost(this.creationForm.value).subscribe(data => this.handleSuccess(data), error => this.handleError(error));
+      this.blogpostService.createBlogpost(this.creationForm.value).subscribe(
+        (data) => this.handleSuccess(data, formDirective),
+        (error) => this.handleError(error)
+      );
     }
   }
 
-  handleSuccess(data) {
-    console.log('OK blogpost created', data);
+  handleSuccess(data, formDirective) {
+    console.log("OK blogpost created", data);
+    this.creationForm.reset();
+    formDirective.resetForm();
   }
 
   handleError(error) {
-    console.error('KO blogpost NOT created !');
-
+    console.error("KO blogpost NOT created !");
   }
 }
