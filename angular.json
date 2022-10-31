@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "project-whisky-app"
+  "defaultProject": "project-whisky-app",
+  "cli": {
+    "analytics": false
+  }
 }

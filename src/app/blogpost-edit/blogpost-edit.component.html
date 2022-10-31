@@ -38,7 +38,7 @@
       <label for="image">choose image</label>
       <input type="file" name="image" id="image" [value]="bp.image" />
       <button type="button" mat-button (click)="upload()">upload image</button>
-      <button mat-button type="submit">update blog post</button>
+      <button mat-button type="submit" [disabled]="!formDirective.form.valid">update blog post</button>
     </div>
   </form>
 </mat-card>
