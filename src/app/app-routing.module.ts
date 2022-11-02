@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AdminComponent } from "./admin/admin.component";
+import { AuthComponent } from "./auth/auth.component";
 import { BlogpostEditComponent } from "./blogpost-edit/blogpost-edit.component";
 import { BlogpostListComponent } from "./blogpost-list/blogpost-list.component";
 import { BlogpostComponent } from "./blogpost/blogpost.component";
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: "blog-posts/:id",
     component: BlogpostComponent,
+  },
+  {
+    path: "auth",
+    component: AuthComponent,
   },
   {
     path: "admin",
