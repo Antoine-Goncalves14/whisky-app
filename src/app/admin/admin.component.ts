@@ -17,6 +17,10 @@ export class AdminComponent implements OnInit {
   constructor(private blogpostService: BlogpostService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    if (!this.authService.isAuthenticated) {
+      this.router.navigate(['/auth']);
+    }
+
     // this.blogposts$ = this.blogpostService.getBlogposts();
     this.blogpostService.getBlogposts().subscribe((data) => {
       this.refresh(data);
