@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthService } from "../auth.service";
 // import { Observable } from 'rxjs';
 import { BlogpostService } from "../blogpost.service";
 import { Blogpost } from "../models/blogpost";
@@ -12,7 +14,7 @@ export class AdminComponent implements OnInit {
   // blogposts$: Observable<Blogpost[]>;
   allBlogposts: Blogpost[];
 
-  constructor(private blogpostService: BlogpostService) {}
+  constructor(private blogpostService: BlogpostService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     // this.blogposts$ = this.blogpostService.getBlogposts();
@@ -52,5 +54,15 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  handleError(error) {}
+  handleError(error) {
+    console.error(error);
+  }
+
+  logout() {
+    this.authService.logout().subscribe(data => {
+      console.log(data);
+      this.router.navigate(['/auth']);
+    }, err => console.error(err)
+    )
+  }
 }
