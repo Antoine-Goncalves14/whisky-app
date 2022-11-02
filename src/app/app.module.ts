@@ -1,19 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BlogpostComponent } from './blogpost/blogpost.component';
-import { BlogpostListComponent } from './blogpost-list/blogpost-list.component';
-import { MaterialModule } from './material.module';
-import { ErrorpageComponent } from './errorpage/errorpage.component';
-import { AdminComponent } from './admin/admin.component';
-import { BlogpostCreateComponent } from './blogpost-create/blogpost-create.component';
-import { BlogpostEditComponent } from './blogpost-edit/blogpost-edit.component';
-import { AuthComponent } from './auth/auth.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BlogpostComponent } from "./blogpost/blogpost.component";
+import { BlogpostListComponent } from "./blogpost-list/blogpost-list.component";
+import { MaterialModule } from "./material.module";
+import { ErrorpageComponent } from "./errorpage/errorpage.component";
+import { AdminComponent } from "./admin/admin.component";
+import { BlogpostCreateComponent } from "./blogpost-create/blogpost-create.component";
+import { BlogpostEditComponent } from "./blogpost-edit/blogpost-edit.component";
+import { AuthComponent } from "./auth/auth.component";
+import { AddCookieInterceptor } from "./add-cookie.interceptor";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AuthComponent } from './auth/auth.component';
     AdminComponent,
     BlogpostCreateComponent,
     BlogpostEditComponent,
-    AuthComponent
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +34,9 @@ import { AuthComponent } from './auth/auth.component';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AddCookieInterceptor, multi: true }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
